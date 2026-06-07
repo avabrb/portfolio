@@ -4,7 +4,7 @@
   "description": "Interactive portfolio website showcasing projects in CS, Transnational Asian Studies, sustainability, and ethical AI.",
   "private": true,
   "author": "Ava Baraban",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/avabrb/portfolio.git"

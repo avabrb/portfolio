@@ -24,7 +24,6 @@ Project pages included:
 ```
 portfolio/
 ├── .gitignore                # Excludes dependencies, builds, OS metadata
-├── LICENSE                   # Open-source MIT license
 ├── README.md                 # Project documentation
 ├── package.json              # NPM package manifest
 ├── vite.config.js            # Vite bundler configurations
@@ -86,4 +85,4 @@ npm run preview
 
 ## License
 
-This project is open-source and available under the [MIT License](LICENSE).
+Copyright © 2026 Ava Baraban. All rights reserved. Proprietary and confidential. Unauthorized copying of these files, via any medium, is strictly prohibited.
