@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human-AI Relations in China | Ava Baraban</title>
+  <meta name="description" content="Human-AI Relations in China: Governance, Philosophy, and Disability research details.">
+  <link rel="stylesheet" href="src/styles/main.css">
+  <style>
+    .china-grid-row-2 {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 40px;
+      margin-top: 60px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 60px;
+    }
+    
+    .award-col {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .award-img-wrapper {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      aspect-ratio: 4 / 3;
+    }
+    
+    .award-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+    
+    .award-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-top: 20px;
+      line-height: 1.3;
+    }
+    
+    .award-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+    
+    .link-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4 / 5;
+      text-decoration: none;
+      color: #ffffff;
+      padding: 30px;
+      transition: var(--transition-smooth);
+    }
+    
+    .link-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+      z-index: 1;
+    }
+    
+    .link-card-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-smooth);
+    }
+    
+    .link-card-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .link-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    }
+    
+    .link-card:hover .link-card-bg {
+      transform: scale(1.05);
+    }
+    
+    @media (max-width: 900px) {
+      .china-grid-row-2 {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .link-card {
+        aspect-ratio: 16 / 10;
+      }
+    }
+  </style>
+</head>
+<body class="project-detail-body china-bg">
+
+  <!-- Header Home Button -->
+  <header class="back-header">
+    <a href="index.html" class="home-btn" title="Back to Homepage">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </a>
+  </header>
+
+  <main class="container project-page-container">
+    <h1 class="project-header-title">Human-AI Relations in China: Governance, Philosophy, and Disability</h1>
+    
+    <!-- Row 1: Lily & Abstract -->
+    <div class="project-row">
+      <!-- Left Column: Flower Image -->
+      <div class="project-col-left">
+        <img src="/images/flowers/10.png" alt="Flower lily in Maun, Botswana" class="project-flower-img">
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 10px; text-align: center;">
+          Flower lily on the Thamalakane River, in Maun, Botswana.<br>
+          Photo taken on December 17th, 2025
+        </p>
+      </div>
+      
+      <!-- Right Column: Abstract -->
+      <div class="project-col-right">
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 20px;">Abstract</h2>
+        <div class="project-desc">
+          <p>
+            Since releasing the “<strong>New Generation Artificial Intelligence Development Plan</strong>” in July 2017, China has projected to become a global leader in artificial intelligence by 2030—rapidly expanding its influence in research, development, and governance. China’s primary goal through AI policies is to foster <strong>innovation</strong> and “<strong>common prosperity,</strong>” as opposed to Western powers like the U.S., which promotes technological innovation for improved productivity and business competitiveness, and the E.U., which emphasizes AI ethics to safeguard individual rights.
+          </p>
+          <p>
+            Despite abundant research on China’s state-led AI policies, less attention is paid to how <strong>cultural norms</strong>, <strong>philosophical traditions</strong>, and <strong>governance systems</strong> shape individual attitudes toward AI and <strong>human–AI relations</strong>. To address this gap, I propose examining how Chinese citizens imagine the risks, benefits, and roles of AI, and how cultural philosophies and governance systems may shape these perceptions, contributing to more pluralistic and globally inclusive debates on AI ethics and human-AI relations.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Poster Presenting & Cards -->
+    <div class="china-grid-row-2">
+      <!-- Column 1: Presentation & Award -->
+      <div class="award-col">
+        <div class="award-img-wrapper">
+          <img src="/images/projects/poster_ava.jpg" alt="Ava presenting research poster" class="award-img">
+        </div>
+        <h3 class="award-title">Presentation at the Rice Humanities &amp; Arts Festival (2026)</h3>
+        <p class="award-subtitle">Distinction — Research and Creative Work Award</p>
+      </div>
+      
+      <!-- Column 2: Capstone Paper Card -->
+      <a href="https://drive.google.com/file/d/1m_uqkTcyH1yy98kX1q9fEedKDeygSnhp/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="link-card">
+        <img src="/images/projects/card_capstone.png" alt="Capstone Paper preview background" class="link-card-bg">
+        <div class="link-card-content">
+          <h4 class="card-title">Full paper (current draft)</h4>
+          <p class="card-desc">Asian Studies Capstone, 2025.</p>
+        </div>
+      </a>
+      
+      <!-- Column 3: Poster Link Card -->
+      <a href="https://drive.google.com/file/d/19HqAcpIEC_htpduBWNIcCMJ8qTI2e5zs/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="link-card">
+        <img src="/images/projects/card_poster.jpg" alt="Research Poster preview background" class="link-card-bg">
+        <div class="link-card-content">
+          <h4 class="card-title">Research Poster</h4>
+          <p class="card-desc">(Humanities & Arts Festival, Rice University, 2026).</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Next Project Navigation -->
+    <nav class="next-project-nav" aria-label="Next project">
+      <a href="ccohwebsite.html" class="next-project-link" id="next-project-btn">
+        <div class="next-project-text">
+          <div class="next-project-label">Next Project</div>
+          <div class="next-project-title">Consular Corps of Houston Website</div>
+        </div>
+        <div class="next-project-arrow">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </div>
+      </a>
+    </nav>
+
+  </main>
+
+</body>
+</html>

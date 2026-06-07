@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gridlocked: Taiwan's Energy | Ava Baraban</title>
+  <meta name="description" content="Gridlocked: Energy Security, Developmental Politics, and the Local Crisis of Renewable Energy in Taiwan — forthcoming in Rice Asian Studies Review, Volume 9.">
+  <link rel="stylesheet" href="src/styles/main.css">
+  <style>
+    /* ── Page-level accent (scarlet red — Flor de Maga) ─────── */
+    :root {
+      --te-red:   #c93535;
+      --te-light: #e87070;
+      --te-glow:  rgba(201, 53, 53, 0.28);
+    }
+
+    .taiwan-bg {
+      background: radial-gradient(circle at 50% 25%, #1a0606 0%, #000000 100%);
+    }
+
+    /* ── Meta strip ───────────────────────────────────────────── */
+    .te-meta-strip {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--te-light);
+      margin-bottom: 20px;
+    }
+    .te-meta-strip .dot { opacity: 0.5; }
+
+    /* ── In-progress badge ────────────────────────────────────── */
+    .te-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(201, 53, 53, 0.12);
+      border: 1px solid rgba(201, 53, 53, 0.38);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--te-light);
+    }
+    .te-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--te-red);
+      animation: te-pulse 1.8s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes te-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    /* ── Publication notice card ─────────────────────────────── */
+    .te-pub-notice {
+      background: rgba(201, 53, 53, 0.07);
+      border: 1px solid rgba(201, 53, 53, 0.22);
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin-top: 24px;
+      margin-bottom: 32px;
+    }
+    .te-pub-text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #e8c8c8;
+    }
+    .te-pub-text strong {
+      color: var(--te-light);
+      font-weight: 700;
+    }
+
+    /* ── Label ────────────────────────────────────────────────── */
+    .te-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* ── Action buttons ───────────────────────────────────────── */
+    .te-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .te-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      color: #fff;
+    }
+    .te-btn-primary {
+      background: rgba(201, 53, 53, 0.18);
+      border: 1px solid rgba(201, 53, 53, 0.45);
+    }
+    .te-btn-primary:hover {
+      background: rgba(201, 53, 53, 0.30);
+      border-color: rgba(201, 53, 53, 0.70);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201, 53, 53, 0.20);
+    }
+    .te-btn-secondary {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.13);
+    }
+    .te-btn-secondary:hover {
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.28);
+      transform: translateY(-2px);
+    }
+    .te-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+  </style>
+</head>
+<body class="project-detail-body taiwan-bg">
+
+  <!-- Header Home Button -->
+  <header class="back-header">
+    <a href="index.html" class="home-btn" title="Back to Homepage">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </a>
+  </header>
+
+  <main class="container project-page-container">
+
+    <!-- ── Hero Row ──────────────────────────────────────────── -->
+    <div class="project-row">
+
+      <!-- Left: Flower -->
+      <div class="project-col-left">
+        <img src="/images/flowers/8.png" alt="Flor de Maga, the national flower of Puerto Rico" class="project-flower-img">
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 10px; text-align: center;">
+          <em>Flor de Maga</em>, the national flower of Puerto Rico,<br>
+          photographed on a morning walk on the east coast<br>
+          of Puerto Rico. Spring 2026.
+        </p>
+      </div>
+
+      <!-- Right: Title + Abstract -->
+      <div class="project-col-right">
+
+        <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 20px;">
+          <div class="te-meta-strip" style="margin-bottom: 0;">
+            <span>Energy Policy</span><span class="dot">·</span>
+            <span>Asian Studies</span><span class="dot">·</span>
+            <span>Taiwan</span>
+          </div>
+          <span class="te-status-badge" id="status-badge">
+            <span class="te-status-dot"></span>
+            In Progress
+          </span>
+        </div>
+
+        <h1 class="project-header-title" style="margin-bottom: 0; font-size: 38px;">
+          Gridlocked: Energy Security, Developmental Politics, and the Local Crisis of Renewable Energy in Taiwan
+        </h1>
+
+        <!-- Publication notice -->
+        <div class="te-pub-notice">
+          <div class="te-pub-text">
+            The paper is forthcoming in the
+            <strong>Rice Asian Studies Review, Volume 9</strong>. A pre-publication draft is
+            available via the link below.
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="te-actions">
+          <a href="https://drive.google.com/file/d/1Z5F9FdGH-c3gpG169XV8HMrMZrQBzJZ2/view?usp=sharing"
+             target="_blank" rel="noopener noreferrer"
+             class="te-btn te-btn-primary" id="btn-paper-draft">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            Read draft (Google Drive)
+          </a>
+          <a href="https://rasr.rice.edu/"
+             target="_blank" rel="noopener noreferrer"
+             class="te-btn te-btn-secondary" id="btn-journal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            Rice Asian Studies Review
+          </a>
+        </div>
+
+        <!-- Abstract -->
+        <p class="te-label" style="margin-top: 36px;">Abstract</p>
+        <div class="project-desc">
+          <p>
+            Taiwan's renewable energy transition presents a compelling case study on the relationship
+            between <strong>energy security</strong>, <strong>governance</strong>, and <strong>local implementation</strong>. As a small island importing
+            98% of its energy supply, Taiwan is highly exposed to global market volatility and particularly
+            vulnerable to the growing geopolitical tensions with China. With strong coastal winds, a sunny
+            climate, and a strategic position on the Pacific Ring of Fire, the island has the potential to
+            develop a robust renewable energy industry that could meaningfully strengthen its energy
+            security. Yet despite the urgent security imperatives, Taiwan achieved only <strong>11.6% of its
+            electricity from renewable sources by 2024</strong>, falling dramatically short of its 20% target and well
+            below the global average of 30%.
+          </p>
+          <p>
+            This paper argues that Taiwan's underperformance reflects, in part, deep structural contradictions
+            rooted in its governance model. Examining the <strong>geopolitical imperatives</strong> driving the transition,
+            the <strong>post-developmental institutional structures</strong> shaping its strategy, and the <strong>local-level tensions</strong>
+            undermining its implementation, this paper finds that the challenges Taiwan faces stem from the
+            difficulty of reconciling centralized, <strong>top-down energy governance</strong> with a transition that requires
+            meaningful adaptation to local contexts. Taiwan's case thus speaks to a broader challenge faced
+            by states pursuing rapid renewable transitions. Energy security imperatives alone do not
+            guarantee effective implementation when governance frameworks remain misaligned with the
+            decentralized, place-based demands of renewable energy systems.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Next Project Navigation -->
+    <nav class="next-project-nav" aria-label="Next project">
+      <a href="easyread.html" class="next-project-link" id="next-project-btn">
+        <div class="next-project-text">
+          <div class="next-project-label">Next Project</div>
+          <div class="next-project-title">Automated Text Simplification for Easy Read</div>
+        </div>
+        <div class="next-project-arrow">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </div>
+      </a>
+    </nav>
+
+  </main>
+
+</body>
+</html>

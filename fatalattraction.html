@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fatal Attraction | Ava Baraban</title>
+  <meta name="description" content="Fatal Attraction — A retro 80s 3-player asymmetric video game built with Godot, C#, and AI-assisted design.">
+  <link rel="stylesheet" href="src/styles/main.css">
+  <style>
+    /* ── Page accent (slide-deck electric blue) ─────────────── */
+    :root {
+      --fa-blue:  #00aaff;
+      --fa-light: #66ccff;
+      --fa-dark:  #020c1e;
+    }
+
+    /* ── Meta strip ─────────────────────────────────────────── */
+    .fa-meta-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fa-light);
+      margin-bottom: 20px;
+    }
+    .fa-meta-strip .dot { opacity: 0.5; }
+
+    /* ── Action buttons ─────────────────────────────────────── */
+    .fa-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .fa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      background: rgba(255,255,255,0.05);
+    }
+    .fa-btn:hover {
+      background: rgba(0,170,255,0.15);
+      border-color: rgba(0,170,255,0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0,170,255,0.25);
+    }
+    .fa-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* ── Gameplay layout ────────────────────────────────────── */
+    .gameplay-row {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-top: 30px;
+    }
+    .gameplay-video-col { flex: 1; }
+    .gameplay-video {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* ── Tech Stack ─────────────────────────────────────────── */
+    .fa-tech-section {
+      margin-top: 64px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .fa-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .fa-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .fa-tag {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #ddd;
+      transition: var(--transition-smooth);
+    }
+    .fa-tag:hover {
+      background: rgba(0,170,255,0.15);
+      border-color: rgba(0,170,255,0.5);
+      color: #fff;
+    }
+
+    @media (max-width: 700px) {
+      .gameplay-row { flex-direction: column; gap: 20px; }
+    }
+  </style>
+</head>
+<body class="project-detail-body fatal-bg">
+
+  <!-- Header Home Button -->
+  <header class="back-header">
+    <a href="index.html" class="home-btn" title="Back to Homepage">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </a>
+  </header>
+
+  <main class="container project-page-container">
+
+    <div class="project-row">
+      <!-- Left Column: Flower Image -->
+      <div class="project-col-left">
+        <img src="/images/flowers/19.png" alt="Pink rose in Normandie, France" class="project-flower-img">
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 10px; text-align: center;">
+          Pink rose in Normandie, France.<br>
+          Photo taken on August 17th, 2025
+        </p>
+      </div>
+
+      <!-- Right Column: Description & Links -->
+      <div class="project-col-right">
+
+        <!-- Keyword meta strip -->
+        <div class="fa-meta-strip">
+          <span>Video Game</span><span class="dot">·</span>
+          <span>3-Player</span><span class="dot">·</span>
+          <span>Original Idea</span><span class="dot">·</span>
+          <span>Dating Show Inspired</span>
+        </div>
+
+        <h1 class="project-header-title" style="margin-bottom: 0;">Fatal Attraction</h1>
+
+        <!-- GitHub button -->
+        <div class="fa-actions">
+          <a href="https://github.com/nominr/fatal-attraction" target="_blank" rel="noopener noreferrer" class="fa-btn" id="btn-fa-github">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
+
+        <!-- Description -->
+        <div class="project-desc" style="margin-top: 32px;">
+          <p>
+            Fatal Attraction is a fast paced, <strong>3-player asymmetric video game</strong> set within a dating reality TV show called “Love in Paradise.” With an immersive 2D isometric view and retro 80s aesthetic, Fatal Attraction is a game about <strong>power and influence</strong>. If you play as the <strong>Producer</strong>, your goal is to maintain a positive, entertaining energy on the set. As the <strong>Admirer</strong> you should charm other contestants. Finally, as the <strong>Prophet</strong> you will attempt to convert as many contestants to your cause as possible. Overall, your goal is to <strong>increase NPC contestants’ affinity for you</strong> so you can influence them. But beware, you only have a single day (3-minute game time) to make a good impression!
+          </p>
+          <p style="margin-top: 16px;">
+            Access the game directly on the
+            <a href="https://github.com/nominr/fatal-attraction" target="_blank" rel="noopener noreferrer" class="project-link-btn">GitHub repository</a>,
+            launch it on Godot, and play with two friends!
+          </p>
+        </div>
+
+        <!-- Gameplay video -->
+        <div class="gameplay-row">
+          <div class="gameplay-video-col">
+            <video
+              class="gameplay-video"
+              src="/media/fatal_attraction_gameplay.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+            ></video>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Game Details Canva Embed -->
+    <section class="embed-section" style="margin-top: 64px;">
+      <div style="display:flex; align-items:center; gap: 16px; margin-bottom: 28px;">
+        <p class="fa-label" style="margin-bottom:0;">Game Details</p>
+        <div style="flex:1; height:1px; background: linear-gradient(to right, rgba(0,170,255,0.35), transparent);"></div>
+      </div>
+      <div class="iframe-wrapper">
+        <iframe src="https://www.canva.com/design/DAHC1ZMs4xc/WBwcAcyplbP2b2HLnR4AvQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+      </div>
+      <p style="font-size: 14px; text-align: center; margin-top: 15px; color: var(--text-muted);">
+        Final Demo by Ava Baraban
+      </p>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="fa-tech-section">
+      <p class="fa-label">Tech Stack</p>
+      <div class="fa-tags">
+        <span class="fa-tag">Godot</span>
+        <span class="fa-tag">C#</span>
+        <span class="fa-tag">GDScript</span>
+        <span class="fa-tag">Antigravity</span>
+        <span class="fa-tag">Gemini</span>
+        <span class="fa-tag">Claude</span>
+        <span class="fa-tag">Git</span>
+      </div>
+    </section>
+
+    <!-- Next Project Navigation -->
+    <nav class="next-project-nav" aria-label="Next project">
+      <a href="chinaai.html" class="next-project-link" id="next-project-btn">
+        <div class="next-project-text">
+          <div class="next-project-label">Next Project</div>
+          <div class="next-project-title">Human-AI Relations in China</div>
+        </div>
+        <div class="next-project-arrow">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </div>
+      </a>
+    </nav>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "ava-baraban-portfolio",
+  "version": "1.0.0",
+  "description": "Interactive portfolio website showcasing projects in CS, Transnational Asian Studies, sustainability, and ethical AI.",
+  "private": true,
+  "author": "Ava Baraban",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avabrb/portfolio.git"
+  },
+  "keywords": [
+    "portfolio",
+    "vite",
+    "javascript",
+    "physics",
+    "website"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
