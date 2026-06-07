@@ -1,22 +1,13 @@
-# Ava Baraban — Portfolio Website
+# Portfolio Website
 
-An interactive, responsive portfolio website showcasing projects across Computer Science, Transnational Asian Studies, sustainability, and ethical AI. The site features a premium, rich dark-mode aesthetic with custom animations and a dynamic, interactive flower physics simulation.
+A portfolio website showcasing some of my projects in Computer Science, Asian Studies, sustainability, and ethical AI! The site's theme is centered around flowers that I have photographed on walks across the world over the years :)
 
-Live project pages included:
+Project pages included:
 - **EasyRead**: Graph-guided LLM NLP pipeline for automated text simplification.
 - **Fatal Attraction**: 3-Player asymmetric video game built in Godot and C#.
-- **Human-AI Relations in China**: Award-winning governance and philosophical research.
+- **Human-AI Relations in China**: AI governance and philosophy research.
 - **Consular Corps of Houston**: Full-stack civic tech web portal.
-- **Gridlocked: Taiwan's Energy**: Forthcoming research paper in Rice Asian Studies Review.
-
----
-
-## Features
-
-- **Dynamic Gravity Simulation**: Interactive flower scatter section. Click anywhere in the projects section to trigger falling gravity, bounding, and settling dynamics using custom vanilla JavaScript physics.
-- **Micro-Animations**: Hover effect rotates flowers, pulls focus on projects, and wiggles text prompts.
-- **Custom Visual Experience**: A custom ladybug cursor appears exclusively when interacting with the projects grid.
-- **Optimized Performance**: Pre-rendered multi-page application bundled with Vite.
+- **Gridlocked: Taiwan's Energy**: Published research paper in Rice Asian Studies Review.
 
 ---
 
@@ -24,7 +15,7 @@ Live project pages included:
 
 - **Core**: HTML5, Vanilla JavaScript (ES6+), CSS3 Custom Variables (Custom styling)
 - **Bundler & Dev Server**: [Vite](https://vitejs.dev/)
-- **Deployment & Hosting**: Vite static compilation (`dist/`) ready for GitHub Pages, Vercel, Netlify, or Firebase Hosting.
+- **Deployment & Hosting**: Vite static compilation (`dist/`), deployed through Vercel
 
 ---
 
