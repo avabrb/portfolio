@@ -10,7 +10,19 @@
   'use strict';
 
   function initDoodle() {
-    const paths = document.querySelectorAll('.hero-decorations svg path');
+    const paths = document.querySelectorAll('.hero-decorations svg .doodle-path');
+    
+    // Explicit timings configuration for each segment:
+    // Index 0: Top inside center circle
+    // Index 1: Bottom inside center circle
+    // Index 2: Top flower petals, stem, and leaves
+    // Index 3: Bottom flower petals outline
+    const config = [
+      { delay: 100, duration: '0.8s' },  // Top center circle
+      { delay: 250, duration: '0.8s' },  // Bottom center circle
+      { delay: 1000, duration: '2.2s' }, // Top petals + stem + leaves (begins after centers complete)
+      { delay: 2000, duration: '2.2s' }  // Bottom petals (begins as the stem reaches bottom)
+    ];
     
     paths.forEach((path, index) => {
       // Calculate exact path length in user coordinate space
@@ -24,12 +36,14 @@
       // Force layout calculation/reflow to register the starting states
       void path.getBoundingClientRect();
       
+      // Retrieve timing parameters for this specific path segment
+      const timing = config[index] || { delay: 100 + index * 450, duration: '5.5s' };
+      
       // Schedule the animation transition in a future paint frame
-      const delayMs = 100 + index * 450;
       setTimeout(() => {
-        path.style.transition = 'stroke-dashoffset 3.2s cubic-bezier(0.16, 1, 0.3, 1)';
+        path.style.transition = `stroke-dashoffset ${timing.duration} ease-in-out`;
         path.style.strokeDashoffset = '0';
-      }, delayMs);
+      }, timing.delay);
     });
   }
 

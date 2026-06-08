@@ -189,7 +189,7 @@ button,
 
 .hero-decorations {
   position: absolute;
-  top: -60px;
+  top: -20px;
   right: 10px;
   width: 180px;
   height: 180px;
@@ -257,7 +257,7 @@ button,
 
   .hero-decorations {
     right: -10px;
-    top: -40px;
+    top: -10px;
     width: 120px;
     height: 120px;
   }
@@ -293,18 +293,22 @@ button,
     transform: translate(-50%, -50%) scale(0.3) rotate(var(--rotation));
     opacity: 0;
   }
+
   20% {
     transform: translate(-50%, -50%) scale(calc(var(--scale) * 1.15)) rotate(var(--rotation));
     opacity: 0.95;
   }
+
   40% {
     transform: translate(-50%, -50%) scale(var(--scale)) rotate(var(--rotation));
     opacity: 1;
   }
+
   80% {
     transform: translate(-50%, -50%) scale(var(--scale)) rotate(var(--rotation));
     opacity: 1;
   }
+
   100% {
     transform: translate(-50%, -50%) scale(calc(var(--scale) * 0.5)) rotate(calc(var(--rotation) + 15deg));
     opacity: 0;
@@ -713,6 +717,7 @@ button,
     align-items: flex-start;
     gap: 20px;
   }
+
   .footer-nav {
     gap: 16px;
     flex-wrap: wrap;
