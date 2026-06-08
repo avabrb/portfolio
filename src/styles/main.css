@@ -115,6 +115,11 @@ button,
 
 /* Hero Section */
 .hero {
+  position: relative;
+  width: 100%;
+}
+
+.hero-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -132,6 +137,7 @@ button,
   flex: 1;
   display: flex;
   justify-content: flex-end;
+  position: relative;
 }
 
 .hero-title-container {
@@ -139,6 +145,8 @@ button,
 }
 
 .hero-title {
+  position: relative;
+  z-index: 15;
   font-size: 80px;
   font-weight: 900;
   line-height: 0.95;
@@ -150,6 +158,8 @@ button,
 }
 
 .hero-subtitle {
+  position: relative;
+  z-index: 15;
   font-size: 24px;
   font-weight: 400;
   color: var(--text-muted);
@@ -158,6 +168,8 @@ button,
 }
 
 .hero-btn {
+  position: relative;
+  z-index: 15;
   display: inline-block;
   padding: 14px 28px;
   background-color: #ffffff;
@@ -177,12 +189,13 @@ button,
 
 .hero-decorations {
   position: absolute;
-  top: -20px;
-  right: 40px;
-  width: 100px;
-  height: 100px;
+  top: -60px;
+  right: 10px;
+  width: 180px;
+  height: 180px;
   pointer-events: none;
   opacity: 0.8;
+  z-index: 4;
 }
 
 
@@ -191,11 +204,19 @@ button,
   width: 100%;
   height: 100%;
   stroke: #ffffff;
-  stroke-width: 1;
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.hero-decorations svg path {
+  stroke: #ffffff;
+  stroke-width: 1.5;
   fill: none;
 }
 
 .profile-img-wrapper {
+  position: relative;
+  z-index: 5;
   width: 100%;
   max-width: 440px;
   aspect-ratio: 4 / 5;
@@ -213,7 +234,7 @@ button,
 }
 
 @media (max-width: 900px) {
-  .hero {
+  .hero-inner {
     flex-direction: column-reverse;
     padding-top: 60px;
     padding-bottom: 60px;
@@ -235,7 +256,58 @@ button,
   }
 
   .hero-decorations {
-    right: 0;
+    right: -10px;
+    top: -40px;
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* Hero Image Trail Container */
+.hero-trail-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 10;
+}
+
+.trail-image {
+  position: absolute;
+  width: clamp(100px, 15vw, 150px);
+  height: clamp(100px, 15vw, 150px);
+  object-fit: contain;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0) rotate(0deg);
+  opacity: 0;
+  animation: trail-flower-life 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+}
+
+@keyframes trail-flower-life {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3) rotate(var(--rotation));
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-50%, -50%) scale(calc(var(--scale) * 1.15)) rotate(var(--rotation));
+    opacity: 0.95;
+  }
+  40% {
+    transform: translate(-50%, -50%) scale(var(--scale)) rotate(var(--rotation));
+    opacity: 1;
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(var(--scale)) rotate(var(--rotation));
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(calc(var(--scale) * 0.5)) rotate(calc(var(--rotation) + 15deg));
+    opacity: 0;
   }
 }
 
@@ -321,7 +393,11 @@ button,
   transition: var(--transition-smooth);
 }
 
-.flower-item:hover {
+.flower-item[data-physics="true"] {
+  cursor: grab;
+}
+
+.flower-item:not(.is-falling):not(.is-landed):hover {
   background: transparent;
   border: none;
   transform: translateY(-8px) scale(1.08);
@@ -357,8 +433,8 @@ button,
 .flower-11 {
   width: calc(174 / 1440 * 100%);
   height: calc(169 / 1120 * 100%);
-  top: calc(-18 / 1120 * 100%);
-  left: calc(923 / 1440 * 100%);
+  top: calc(32 / 1120 * 100%);
+  left: calc(542 / 1440 * 100%);
 }
 
 .flower-12 {
@@ -392,8 +468,8 @@ button,
 .flower-16 {
   width: calc(163 / 1440 * 100%);
   height: calc(163 / 1120 * 100%);
-  top: calc(32 / 1120 * 100%);
-  left: calc(542 / 1440 * 100%);
+  top: calc(-18 / 1120 * 100%);
+  left: calc(923 / 1440 * 100%);
 }
 
 .flower-17 {
@@ -498,8 +574,6 @@ button,
   /* detach from normal flow, physics JS sets x/y via inline style */
   position: absolute;
   will-change: transform;
-  /* disable CSS hover effects during fall */
-  pointer-events: none;
   transition: none !important;
 }
 
@@ -512,7 +586,6 @@ button,
 /* Landed state: subtle glow pulse */
 .flower-item.is-landed {
   position: absolute;
-  pointer-events: none;
   transition: filter 0.3s ease;
   animation: landed-glow 2s ease-in-out infinite alternate;
 }

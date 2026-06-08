@@ -24,9 +24,14 @@
   const INITIAL_SPIN   =  3;    // max initial rotation speed (deg/frame)
 
   /* ── state ───────────────────────────────────────────────── */
-  let triggered = false;
-  let rafId     = null;
-  let bodies    = [];
+  let triggered     = false;
+  let rafId         = null;
+  let bodies        = [];
+  let staggerTimers = [];
+  let draggedBody   = null;
+  let dragOffset    = { x: 0, y: 0 };
+  let lastPointerPos = { x: 0, y: 0 };
+  let pointerVel    = { x: 0, y: 0 };
 
   /* ── helpers ─────────────────────────────────────────────── */
   const rand = (lo, hi) => lo + Math.random() * (hi - lo);
@@ -71,7 +76,7 @@
   }
 
   /* ── launch physics ──────────────────────────────────────── */
-  function triggerPhysics() {
+  function triggerPhysics(instant = false) {
     if (triggered) return;
     triggered = true;
 
@@ -94,7 +99,9 @@
     const rects = physicsEls.map(el => getVisualRect(el, containerRect));
 
     physicsEls.forEach((el, i) => {
-      setTimeout(() => {
+      const initBody = () => {
+        if (bodies.some(b => b.el === el)) return;
+
         const { x, y, w, h } = rects[i];
 
         // Pin element at its computed visual position
@@ -120,12 +127,17 @@
           containerW,
         });
 
-        // Restart RAF if it stopped before this body was added
-        // (RAF fires before setTimeout(0) in the event loop)
         if (!rafId) {
           rafId = requestAnimationFrame(step);
         }
-      }, i * STAGGER_MS);
+      };
+
+      if (instant) {
+        initBody();
+      } else {
+        const timer = setTimeout(initBody, i * STAGGER_MS);
+        staggerTimers.push(timer);
+      }
     });
   }
 
@@ -134,6 +146,11 @@
     let anyActive = false;
 
     bodies.forEach(b => {
+      if (b === draggedBody) {
+        anyActive = true;
+        return;
+      }
+
       if (b.settled) return;
 
       b.vy    += GRAVITY;
@@ -187,12 +204,15 @@
 
   /* ── reset ───────────────────────────────────────────────── */
   // Clears all inline styles so the original percentage-based CSS takes over.
-  // This works correctly at any viewport size (no stale pixel values).
   function reset() {
     if (rafId) {
       cancelAnimationFrame(rafId);
       rafId = null;
     }
+
+    staggerTimers.forEach(clearTimeout);
+    staggerTimers = [];
+    draggedBody = null;
 
     bodies.forEach(b => {
       b.el.classList.remove('is-falling', 'is-landed');
@@ -214,23 +234,115 @@
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   let lastTouchEnd = 0;
 
-  function handleTrigger(e) {
+  // Prevent default browser dragging on child images
+  container.querySelectorAll('[data-physics="true"] img').forEach(img => {
+    img.setAttribute('draggable', 'false');
+  });
+
+  function handlePointerDown(e) {
     if (e.target.closest('a.project-link')) return;
     if (prefersReduced.matches) return;
-    if (e.type === 'click' && Date.now() - lastTouchEnd < 600) return;
-    if (!triggered) triggerPhysics();
+
+    if (e.type === 'touchstart') {
+      lastTouchEnd = Date.now();
+    }
+
+    const flowerEl = e.target.closest('[data-physics="true"]');
+    if (!flowerEl) {
+      if (!triggered) triggerPhysics(false);
+      return;
+    }
+
+    e.preventDefault();
+
+    if (!triggered) {
+      triggerPhysics(true);
+    }
+
+    draggedBody = bodies.find(b => b.el === flowerEl);
+    if (!draggedBody) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0].clientX);
+    const clientY = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0].clientY);
+
+    const pointerX = clientX - containerRect.left;
+    const pointerY = clientY - containerRect.top;
+
+    dragOffset.x = pointerX - draggedBody.x;
+    dragOffset.y = pointerY - draggedBody.y;
+
+    draggedBody.settled = false;
+    draggedBody.el.classList.remove('is-landed');
+    draggedBody.el.classList.add('is-falling');
+
+    lastPointerPos.x = pointerX;
+    lastPointerPos.y = pointerY;
+    pointerVel.x = 0;
+    pointerVel.y = 0;
   }
 
-  container.addEventListener('click', handleTrigger);
-  container.addEventListener('touchend', e => {
-    if (e.target.closest('a.project-link')) return;
-    lastTouchEnd = Date.now();
-    handleTrigger(e);
-  }, { passive: true });
+  function handlePointerMove(e) {
+    if (!draggedBody) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0].clientX);
+    const clientY = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0].clientY);
+
+    if (clientX === undefined || clientY === undefined) return;
+
+    const pointerX = clientX - containerRect.left;
+    const pointerY = clientY - containerRect.top;
+
+    draggedBody.x = pointerX - dragOffset.x;
+    draggedBody.y = pointerY - dragOffset.y;
+
+    const maxW = container.offsetWidth - draggedBody.w;
+    const maxH = draggedBody.floorY - draggedBody.h;
+
+    if (draggedBody.x < 0) draggedBody.x = 0;
+    if (draggedBody.x > maxW) draggedBody.x = maxW;
+    if (draggedBody.y < 0) draggedBody.y = 0;
+    if (draggedBody.y > maxH) draggedBody.y = maxH;
+
+    pointerVel.x = pointerX - lastPointerPos.x;
+    pointerVel.y = pointerY - lastPointerPos.y;
+
+    lastPointerPos.x = pointerX;
+    lastPointerPos.y = pointerY;
+
+    draggedBody.angle += pointerVel.x * 0.45;
+
+    draggedBody.el.style.left = draggedBody.x + 'px';
+    draggedBody.el.style.top = draggedBody.y + 'px';
+    draggedBody.el.style.transform = `rotate(${draggedBody.angle}deg)`;
+
+    if (!rafId) {
+      rafId = requestAnimationFrame(step);
+    }
+  }
+
+  function handlePointerUp() {
+    if (!draggedBody) return;
+
+    const MAX_THROW_SPEED = 18;
+    draggedBody.vx = Math.min(Math.max(pointerVel.x, -MAX_THROW_SPEED), MAX_THROW_SPEED);
+    draggedBody.vy = Math.min(Math.max(pointerVel.y, -MAX_THROW_SPEED), MAX_THROW_SPEED);
+    draggedBody.spin = Math.min(Math.max(pointerVel.x * 0.35, -5), 5);
+
+    draggedBody = null;
+  }
+
+  container.addEventListener('mousedown', handlePointerDown);
+  container.addEventListener('touchstart', handlePointerDown, { passive: false });
+
+  window.addEventListener('mousemove', handlePointerMove);
+  window.addEventListener('touchmove', handlePointerMove, { passive: false });
+  window.addEventListener('mouseup', handlePointerUp);
+  window.addEventListener('touchend', handlePointerUp);
+  window.addEventListener('touchcancel', handlePointerUp);
 
   /* ── resize: reset so CSS recalculates proportional positions ── */
-  // reset() clears inline styles → CSS percentage positions kick back in,
-  // always correct for the current viewport. User can re-click to re-trigger.
   let resizeTimer;
   window.addEventListener('resize', () => {
     if (!triggered) return;
@@ -238,6 +350,6 @@
     resizeTimer = setTimeout(reset, 150);
   });
 
-  console.log('[physics.js] loaded. Physics flowers:', container.querySelectorAll('[data-physics="true"]').length);
+  console.log('[physics.js] loaded. Drag & Throw active. Physics flowers:', container.querySelectorAll('[data-physics="true"]').length);
 
 })();
