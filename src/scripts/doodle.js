@@ -18,10 +18,10 @@
     // Index 2: Top flower petals, stem, and leaves
     // Index 3: Bottom flower petals outline
     const config = [
-      { delay: 100, duration: '0.8s' },  // Top center circle
-      { delay: 250, duration: '0.8s' },  // Bottom center circle
-      { delay: 1000, duration: '2.2s' }, // Top petals + stem + leaves (begins after centers complete)
-      { delay: 2000, duration: '2.2s' }  // Bottom petals (begins as the stem reaches bottom)
+      { delay: 50, duration: '0.25s' },  // Index 0: Top inside center circle (starts immediately)
+      { delay: 900, duration: '0.25s' }, // Index 1: Bottom inside center circle (starts after top petals finish)
+      { delay: 300, duration: '0.6s' },  // Index 2: Top flower petals, stem, and leaves (starts after top center finishes)
+      { delay: 1150, duration: '0.6s' }  // Index 3: Bottom flower petals outline (starts after bottom center finishes)
     ];
     
     paths.forEach((path, index) => {

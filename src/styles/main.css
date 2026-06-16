@@ -44,15 +44,7 @@ button,
 .projects *,
 .projects-container,
 .projects-container * {
-  cursor: url('/icons/ladybug_cursor.webp') 32 32, auto !important;
-}
-
-/* For links within the projects section, show ladybug pointer cursor */
-.projects a,
-.projects a *,
-.projects-container a,
-.projects-container a * {
-  cursor: url('/icons/ladybug_cursor.webp') 32 32, pointer !important;
+  cursor: url('/icons/ladybug_cursor_v1.webp') 32 32, auto !important;
 }
 
 /* Layout Utilities */
@@ -398,7 +390,7 @@ button,
 }
 
 .flower-item[data-physics="true"] {
-  cursor: grab;
+  /* Inherits custom ladybug cursor from parent projects-container */
 }
 
 .flower-item:not(.is-falling):not(.is-landed):hover {
