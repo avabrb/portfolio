@@ -15,7 +15,10 @@
   padding: 0;
 }
 
-html,
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   width: 100%;
   min-height: 100vh;
@@ -512,8 +515,10 @@ button,
 
 /* Footer */
 .footer {
-  padding-top: 40px;
-  padding-bottom: 48px;
+  position: relative;
+  z-index: 10;
+  padding-top: 24px;
+  padding-bottom: 5px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
